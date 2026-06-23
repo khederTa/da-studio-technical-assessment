@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background colors */
+    --background: 0 0% 100%;
+    --foreground: 100 20% 5%;
+
+    /* Card/Paper colors */
+    --card: 0 0% 100%;
+    --card-foreground: 100 20% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 100 20% 5%;
+
+    /* Primary colors — slightly lighter green */
+    --primary: 99 78% 24%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 99 65% 32%;
+    --primary-dark: 99 98% 13%;
+
+    /* Secondary colors */
+    --secondary: 100 25% 95%;
+    --secondary-foreground: 100 35% 12%;
+    --secondary-light: 100 20% 97%;
+    --secondary-dark: 100 20% 90%;
+
+    /* Muted/Accent colors */
+    --muted: 100 15% 96%;
+    --muted-foreground: 100 8% 46%;
+    --accent: 100 25% 95%;
+    --accent-foreground: 100 35% 12%;
+
+    /* Destructive/Error colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84.2% 70%;
+
+    /* Text colors */
+    --text-disabled: 100 8% 66%;
+
+    /* Border colors */
+    --border: 100 15% 90%;
+    --input: 100 15% 90%;
+    --ring: 99 78% 24%;
+
+    /* Radius */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Background colors */
+    --background: 100 18% 6%;
+    --foreground: 100 12% 96%;
+
+    /* Card/Paper colors */
+    --card: 100 14% 8%;
+    --card-foreground: 100 12% 96%;
+    --popover: 100 14% 8%;
+    --popover-foreground: 100 12% 96%;
+
+    /* Primary colors — brighter green for dark mode readability */
+    --primary: 99 66% 47%;
+    --primary-foreground: 100 35% 8%;
+    --primary-light: 99 62% 56%;
+    --primary-dark: 99 72% 34%;
+
+    /* Secondary colors */
+    --secondary: 100 10% 14%;
+    --secondary-foreground: 100 12% 95%;
+    --secondary-light: 100 10% 20%;
+    --secondary-dark: 100 10% 9%;
+
+    /* Muted/Accent colors */
+    --muted: 100 10% 15%;
+    --muted-foreground: 100 8% 70%;
+    --accent: 100 10% 16%;
+    --accent-foreground: 100 12% 95%;
+
+    /* Destructive/Error colors */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --destructive-light: 0 62.8% 40%;
+
+    /* Text colors */
+    --text-disabled: 100 7% 50%;
+
+    /* Border colors */
+    --border: 100 10% 22%;
+    --input: 100 10% 22%;
+    --ring: 99 60% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Distinct, readable Arabic typography (exchange / admin UI) */
+  html[lang='ar'] body {
+    font-family: Cairo, Tahoma, 'Segoe UI', sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-xl border border-border/70 bg-white shadow-sm dark:bg-gray-800;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100;
+  }
+}
+
+/* Autofill styles for light mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Autofill styles for dark mode */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #152015 inset !important;
+  -webkit-text-fill-color: #f3f4f6 !important;
+  caret-color: #f3f4f6 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/*
+ * Table headers: inline start follows document direction (uiSlice sets html[dir]).
+ * EN (ltr) → left; AR (rtl) → right. !important wins over Tailwind text-* on th.
+ */
+table thead th {
+  text-align: start !important;
+}
+
+table thead th.text-center {
+  text-align: center !important;
+}
